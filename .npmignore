@@ -1,0 +1,21 @@
+# Node generated files
+node_modules/
+npm-debug.log
+
+# OS generated files
+Thumbs.db
+.DS_Store
+
+
+# Ignore files
+*.log
+*.tgz
+
+typings/
+src/
+typings/
+coverage/
+.vscode/
+
+!index.d.ts
+!index.ref.d.ts
