@@ -21,6 +21,9 @@
   "bugs": {
     "url": "https://github.com/unisoftapps/ng-log-service/issues"
   },
+  "files": [
+    "dist"
+  ],
   "homepage": "https://github.com/unisoftapps/ng-log-service",
   "scripts": {
     "clean:pre": "rimraf dist",
