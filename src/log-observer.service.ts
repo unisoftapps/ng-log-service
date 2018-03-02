@@ -1,4 +1,3 @@
-import { AsyncSubject } from 'rxjs';
 import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { ILogObserver, ILogListener, LogLevel, ILogEvent } from './log-types';
 import { namespaceIsValid } from './log-helpers';
