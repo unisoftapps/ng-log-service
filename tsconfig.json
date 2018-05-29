@@ -15,11 +15,7 @@
             "dom"
         ],
         "target": "es5",
-        "skipLibCheck": true,
-        "types": [
-            "node",
-            "jasmine"
-        ]
+        "skipLibCheck": true
     },
     "exclude": [
         "node_modules"

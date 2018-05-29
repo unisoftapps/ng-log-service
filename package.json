@@ -1,6 +1,6 @@
 {
   "name": "ng-log-service",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Logging Service for Angular 5.x.x",
   "repository": {
     "type": "git",
@@ -29,12 +29,12 @@
   "scripts": {
     "clean:pre": "rimraf dist",
     "clean:post": "rimraf \"src/**/*.ngfactory.ts\" \"**/*.ngsummary.json\" \"dist/node_modules/\"",
-    "copy": "cpy package.json README.md dist",
-    "build:js": "ngc -p tsconfig.dist.json",
+    "copy": "cpy README.md docs/* dist/docs",
+    "build:js": "ngc -p tsconfig.json",
     "build:umd": "rollup -c rollup.config.js",
-    "prebuild": "npm run test && npm run clean:pre",
-    "postbuild": "npm run clean:post && npm run copy",
-    "build": "npm run build:js && npm run build:umd"
+    "prebuild": "npm run clean:pre",
+    "postbuild": "npm run copy",
+    "build": "tsc"
   },
   "dependencies": {
     "@angular/animations": "^5.0.0",
