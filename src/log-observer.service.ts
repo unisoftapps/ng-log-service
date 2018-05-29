@@ -1,5 +1,5 @@
 import { Injectable, Inject, InjectionToken } from '@angular/core';
-import { ILogObserver, ILogListener, LogLevel, ILogEvent } from './log-types';
+import { ILogObserver, ILogListener, LogLevel, ILogEvent, GroupCommand } from './log-types';
 import { namespaceIsValid } from './log-helpers';
 
 let FUZZY_CHARACTER: string = '*';
@@ -76,6 +76,18 @@ export class LogObserverService implements ILogObserver {
 			var logMessage = action();
 			listeners.forEach((listener) => {
 				listener.onLog(namespace, level, logMessage);
+			});
+		}
+	}
+
+	public groupCommand(namespace: string, type: GroupCommand, label?: string) {
+		if (!namespaceIsValid(namespace)) {
+			throw 'Invalid group command! namespace cannot be (null)';
+		}
+		var listeners = this.listenersToNotify(namespace, LogLevel.All);
+		if (listeners.length) {
+			listeners.forEach((listener) => {
+				listener.onGroupCommand(namespace, type, label);
 			});
 		}
 	}

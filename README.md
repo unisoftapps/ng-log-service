@@ -31,6 +31,20 @@ export class MyCustomListener implements ILogListener {
         console.log(namespace, level, logMessage);
     }
 
+    onGroupCommand(namespace: string, type: GroupCommand, label?: string): void {
+        // render appropriate group statement
+        switch (type) {
+            case GroupCommand.GroupStart:
+                console.group(label);
+                break;
+            case GroupCommand.GroupCollapsed:
+                console.groupCollapsed(label);
+                break;
+            case GroupCommand.GroupEnd:
+                console.groupEnd();
+        }
+    }
+
 }
 ```
 

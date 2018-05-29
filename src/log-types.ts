@@ -9,12 +9,21 @@ export enum LogLevel {
 	Fatal = 6
 }
 
+export enum GroupCommand {
+	GroupStart = 1,
+	GroupCollapsed = 2,
+	GroupEnd = 3
+}
+
 export interface ILog {
 	log(arg: string, obj: any, level: LogLevel): void;
 	error(arg: string, obj: any, level: LogLevel): void;
 	warn(arg: string, obj: any, level: LogLevel): void;
 	info(arg: string, obj: any, level: LogLevel): void;
 	debug(arg: string, obj: any, level: LogLevel): void;
+	group(label: string): void;
+	groupCollapsed(label: string);
+	groupEnd(): void;
 };
 
 export interface ILogEvent {
@@ -34,9 +43,11 @@ export abstract class ILogListener {
 	namespace: string = ALL;
 	level: LogLevel;
 	abstract onLog(namespace: string, level: LogLevel, logMessage: ILogMessage): void;
+	abstract onGroupCommand(namespace: string, type: GroupCommand, label?: string): void;
 }
 
 export interface ILogObserver {
+	groupCommand(namespace: string, type: GroupCommand, label?: string);
 	onDidLog(namespace: string, level: LogLevel, action: ILogEvent): void;
 	register(listener: ILogListener): void;
 	getListener(listener: Function): void;

@@ -1,8 +1,11 @@
-import { ILogListener, LogLevel, ILogMessage } from "../log-types";
+import { ILogListener, LogLevel, ILogMessage, GroupCommand } from "../log-types";
 import { ALL } from "../log-observer.service";
 
 export class ExtensionListener implements ILogListener {
 
+    onGroupCommand(namespace: string, type: GroupCommand, label?: string): void {
+        throw new Error("Method not implemented.");
+    }
     namespace = ALL; // what namespace you want to listen for
     level = LogLevel.All; // log level
 

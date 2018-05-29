@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ALL } from '../log-observer.service';
-import { LogLevel, ILogListener, ILogMessage } from '../log-types';
+import { LogLevel, ILogListener, ILogMessage, GroupCommand } from '../log-types';
 
 export interface IConsoleListenerPrefix {
     (): string;
@@ -46,6 +46,28 @@ export class ConsoleListener implements ILogListener {
         return Object.assign({}, this.config);
     }
 
+    onGroupCommand(namespace: string, type: GroupCommand, label?: string): void {
+
+        if (!this.config.enabled) {
+            return;
+        }
+
+        if (!this.inWhitelist(namespace)) {
+            return;
+        }
+
+        switch (type) {
+            case GroupCommand.GroupStart:
+                console.group(label);
+                break;
+            case GroupCommand.GroupCollapsed:
+                console.groupCollapsed(label);
+                break;
+            case GroupCommand.GroupEnd:
+                console.groupEnd();
+        }
+    }
+
     onLog(namespace: string, level: LogLevel, logMessage: ILogMessage) {
         if (!this.config.enabled) {
             return false;
@@ -69,30 +91,23 @@ export class ConsoleListener implements ILogListener {
 
         switch (level) {
             case LogLevel.Debug:
-                console.debug(log, this.beautifyObjectForConsole(logMessage.obj));
+                console.debug(log, logMessage.obj);
                 break;
             case LogLevel.Info:
-                console.info(log, this.beautifyObjectForConsole(logMessage.obj));
+                console.info(log, logMessage.obj);
                 break;
             case LogLevel.Warn:
-                console.warn(log, this.beautifyObjectForConsole(logMessage.obj));
+                console.warn(log, logMessage.obj);
                 break;
             case LogLevel.Error:
             case LogLevel.Fatal:
-                console.error(log, this.beautifyObjectForConsole(logMessage.obj));
+                console.error(log, logMessage.obj);
                 break;
             case LogLevel.All:
             default:
-                console.log(log, this.beautifyObjectForConsole(logMessage.obj));
+                console.log(log, logMessage.obj);
                 break;
         }
-    }
-
-    private beautifyObjectForConsole(obj: any) {
-        if (!obj) {
-            return null;
-        }
-        return JSON.stringify(obj, null, 2)
     }
 
     private prefix(namespace: string): string {
