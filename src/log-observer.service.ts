@@ -2,11 +2,11 @@ import { Injectable, Inject, InjectionToken } from '@angular/core';
 import { ILogObserver, ILogListener, LogLevel, ILogEvent, GroupCommand } from './log-types';
 import { namespaceIsValid } from './log-helpers';
 
-let FUZZY_CHARACTER: string = '*';
-let INDEX_NOT_FOUND = -1;
+const FUZZY_CHARACTER: string = '*';
+const INDEX_NOT_FOUND = -1;
 
-export let ALL: string = FUZZY_CHARACTER;
-export let LOG_LISTENER: InjectionToken<string> = new InjectionToken('LogListener');
+export const ALL: string = FUZZY_CHARACTER;
+export const LOG_LISTENER: InjectionToken<ILogListener> = new InjectionToken('LogListener');
 
 @Injectable()
 export class LogObserverService implements ILogObserver {
@@ -14,7 +14,7 @@ export class LogObserverService implements ILogObserver {
 	private registry: { [namespace: string]: Array<ILogListener> };
 	private listeners: Array<ILogListener> = [];
 
-	constructor(@Inject(LOG_LISTENER) private args: ILogListener[] = []) {
+	constructor(@Inject(LOG_LISTENER) private args: Array<ILogListener> = []) {
 
 		this.registry = {}
 		this.registry[ALL] = [];

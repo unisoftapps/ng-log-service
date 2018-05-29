@@ -28,7 +28,9 @@
   ],
   "homepage": "https://github.com/unisoftapps/ng-log-service",
   "scripts": {
-    "build": "tsc"
+    "clean:pre": "rimraf dist",
+    "clean:post": "rimraf \"dist/node_modules/\"",
+    "build": "npm run clean:pre && ngc && npm run clean:post"
   },
   "dependencies": {
     "@angular/animations": "^5.0.0",
