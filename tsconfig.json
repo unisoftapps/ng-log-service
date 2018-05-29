@@ -1,6 +1,5 @@
 {
     "compilerOptions": {
-        "baseUrl": ".",
         "declaration": true,
         "stripInternal": true,
         "emitDecoratorMetadata": true,
@@ -9,18 +8,11 @@
         "moduleResolution": "node",
         "noEmitOnError": false,
         "outDir": "./dist",
-        "rootDir": ".",
         "lib": [
             "es2015",
             "dom"
         ],
         "target": "es5",
         "skipLibCheck": true
-    },
-    "exclude": [
-        "node_modules"
-    ],
-    "angularCompilerOptions": {
-        "strictMetadataEmit": true
     }
 }
