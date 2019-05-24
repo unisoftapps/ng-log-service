@@ -1,7 +1,7 @@
 {
   "name": "ng-log-service",
-  "version": "0.2.0",
-  "description": "Logging Service for Angular 6.x.x",
+  "version": "0.3.0",
+  "description": "Logging Service for Angular 7.x.x",
   "repository": {
     "type": "git",
     "url": "https://github.com/unisoftapps/ng-log-service.git"
@@ -10,48 +10,54 @@
     "angular 5",
     "angular5",
     "angular",
+    "angular 7",
+    "angular",
     "log",
+    "logger",
     "log service",
     "logging",
     "log module",
     "log4net"
   ],
   "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "tsconfig.json",
+    "docs"
+  ],
   "author": "unisoftapps",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/unisoftapps/ng-log-service/issues"
   },
-  "files": [
-    "dist"
-  ],
   "homepage": "https://github.com/unisoftapps/ng-log-service",
   "scripts": {
+    "build": "npm run clean:pre && npm run build:js && npm run clean:post",
+    "build:js": "ngc -p tsconfig.json",
     "clean:pre": "rimraf dist",
-    "clean:post": "rimraf \"dist/node_modules/\"",
-    "build": "npm run clean:pre && ngc && npm run clean:post"
+    "clean:post": "rimraf \"**/*.ngsummary.json\" \"dist/node_modules/\""
   },
   "dependencies": {
-    "@angular/animations": "^6.0.7",
-    "@angular/cli": "^6.0.8",
-    "@angular/common": "^6.0.7",
-    "@angular/core": "^6.0.7",
-    "@angular/forms": "^6.0.7",
-    "@angular/http": "^6.0.7",
-    "@angular/platform-browser": "^6.0.7",
-    "@angular/platform-browser-dynamic": "^6.0.7",
-    "@angular/router": "^6.0.7",
-    "rxjs": "^6.2.1",
-    "zone.js": "^0.8.26",
-    "rxjs-compat": "^6.0.0-rc.0"
+    "@angular/animations": "7.2.15",
+    "@angular/common": "7.2.15",
+    "@angular/compiler": "7.2.15",
+    "@angular/core": "7.2.15",
+    "@angular/forms": "7.2.15",
+    "@angular/http": "7.2.15",
+    "@angular/language-service": "7.2.15",
+    "@angular/material": "7.3.7",
+    "@angular/platform-browser": "7.2.15",
+    "@angular/platform-browser-dynamic": "7.2.15",
+    "@angular/router": "7.2.15",
+    "rxjs": "6.5.2",
+    "zone.js": "0.8.29"
   },
   "devDependencies": {
-    "@angular/compiler": "^6.0.7",
-    "@angular/compiler-cli": "^6.0.7",
-    "typescript": "~2.7.2",
-    "cpy-cli": "^1.0.1",
-    "rimraf": "^2.5.4",
-    "rollup": "^0.41.1"
+    "@angular/cli": "7.3.9",
+    "@angular/compiler-cli": "7.2.15",
+    "typescript": "3.2.4",
+    "cpy-cli": "1.0.1",
+    "rimraf": "2.5.4"
   }
 }
